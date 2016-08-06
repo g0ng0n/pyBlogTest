@@ -1,13 +1,8 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
-  <head>
-    <title>/ascii/ </title>
-  </head>
+{% block content %}
 
-  <body>
-
-    <h1>/New Post</h1>
+    <h1>New Post</h1>
 
     <form method="post">
       <label>
@@ -26,6 +21,4 @@
     </form>
 
     <hr>
-
-  </body>
-</html>
+{% endblock %}

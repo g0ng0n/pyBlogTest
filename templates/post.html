@@ -1,16 +1,34 @@
 <div class="post">
   <div class="post-heading">
     <div class="post-title">
-      {{p.subject}}
+      {% if permalink==True %}
+        <a href="/posts/{{post.key().id()}}">{{post.subject}}</a>
+      {% else %}
+        {{post.subject}}
+      {% endif %}
     </div>
 
     <div class="post-date">
-      {{p.created.strftime("%b %d, %Y")}}
+      {% if user %}
+        {% if permalink==True %}
+          <a href="/comments/{{post.key().id()}}">Comment</a> -
+        {% endif %}
+        {% if user.key().id() == post.user_id %}
+          <a href="/posts/{{post.key().id()}}/edit">Edit</a>
+          <a href="/posts/{{post.key().id()}}/delete">Delete</a>
+        {% else %}
+          {% if user.key().id() not in post.liked %}
+            <a href="/blog/like?post_id={{post.key().id()}}&amp;permalink={{ not permalink }}">Like</a>
+          {% else %}
+            <a href="/blog/dislike?post_id={{post.key().id()}}&amp;permalink={{ not permalink }}">Dislike</a>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+      (score: {{post.liked_count}}) - {{post.created.strftime("%b %d, %Y")}} by {{ author.name }}
     </div>
-
   </div>
 
   <div class="post-content">
-    {{p._render_text | safe }}
+    {{post._render_text | safe}}
   </div>
 </div>

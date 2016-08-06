@@ -2,6 +2,7 @@
 
 {% block content %}
 
-{{post.render() | safe}}
+{{post.render(user, False) | safe}}
 
 {% endblock %} 
+
