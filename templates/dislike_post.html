@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Like post</h2>
+    <p> are you sure you want to Dislike this post ?</p>
+    <form method="post">
+      <input type="hidden" name="post_id" value="{{post.key().id()}}">
+
+     <i class="glyphicon glyphicon-thumbs-up"></i> <input type="submit" value="LIKE"> or <a href="/posts/{{post.key().id()}}">Cancel</a>
+    </form>
+{% endblock %}

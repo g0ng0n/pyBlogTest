@@ -1,34 +1,70 @@
-<div class="post">
-  <div class="post-heading">
-    <div class="post-title">
-      {% if permalink==True %}
-        <a href="/posts/{{post.key().id()}}">{{post.subject}}</a>
-      {% else %}
-        {{post.subject}}
-      {% endif %}
-    </div>
 
-    <div class="post-date">
-      {% if user %}
-        {% if permalink==True %}
-          <a href="/comments/{{post.key().id()}}">Comment</a> -
-        {% endif %}
-        {% if user.key().id() == post.user_id %}
-          <a href="/posts/{{post.key().id()}}/edit">Edit</a>
-          <a href="/posts/{{post.key().id()}}/delete">Delete</a>
-        {% else %}
-          {% if user.key().id() not in post.liked %}
-            <a href="/blog/like?post_id={{post.key().id()}}&amp;permalink={{ not permalink }}">Like</a>
-          {% else %}
-            <a href="/blog/dislike?post_id={{post.key().id()}}&amp;permalink={{ not permalink }}">Dislike</a>
-          {% endif %}
-        {% endif %}
-      {% endif %}
-      (score: {{post.liked_count}}) - {{post.created.strftime("%b %d, %Y")}} by {{ author.name }}
-    </div>
+<div class="row">
+  <div class="col-sm-10">
+    {% if permalink==True %}
+      <h3>{{post.subject}}</a></h3>
+      <h4><span class="label label-default"><i class="glyphicon glyphicon-thumbs-up"></i>(score: {{post.liked_count}})</span></h4>
+      <h4>
+        <small class="text-muted">{{post.created.strftime("%b %d, %Y")}} • <a href="/posts/{{post.key().id()}}">Read More</a></small>
+      </h4>
+    {% else %}
+      <h3>{{post.subject}}</a></h3>
+      <h4><span class="label label-default"><i class="glyphicon glyphicon-thumbs-up"></i>(score: {{post.liked_count}})</span></h4>
+      <h4>
+        <small class="text-muted">{{post.created.strftime("%b %d, %Y")}} • </small>
+      </h4>
+    {% endif %}
   </div>
 
-  <div class="post-content">
-    {{post._render_text | safe}}
+  <div class="col-sm-2">
+    <a href="#" class="pull-right"><img src="http://api.randomuser.me/portraits/thumb/men/19.jpg" class="img-circle">{{ author.name }}</a>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-12">
+      <p class="text-center">{{post._render_text | safe}}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    {% if user %}
+      {% if user.key().id() == post.user_id %}
+        <a href="/posts/{{post.key().id()}}/edit">Edit</a>
+        <a href="/posts/{{post.key().id()}}/delete">Delete</a>
+      {% else %}
+        {% if user.key().id() not in post.liked %}
+          <i class="glyphicon glyphicon-thumbs-up"></i><a href="/posts/{{post.key().id()}}/like">Like</a>
+        {% else %}
+          <i class="glyphicon glyphicon-thumbs-down"></i><a href="/posts/{{post.key().id()}}/dislike">Dislike</a>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+<div class="row divider">
+  <div class="col-sm-12"><hr></div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    {% if user %}
+      {% if permalink==True %}
+        <a href="/comments/new?post_id={{post.key().id()}}">Add a New Comment</a>
+      {% endif %}
+    {% endif %}
+    {% if comments %}
+      {% for c in comments %}
+        {{ c.render(user) | safe }}
+        <br><br>
+
+        {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+
+
+
+
+
+
+

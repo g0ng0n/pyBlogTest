@@ -1,82 +1,39 @@
-body {
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 14px;
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700');
 
-    width: 800px;
-    margin: 0 auto;
-    padding: 10px;
-    color: #333;
+.divider {
+	margin-top:32px;
+}
+html, body {
+   height: 100%;
+   font-family:'Open Sans',arial,sans-serif;
 }
 
-h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+a {
+  color:#222222;
 }
 
-.error {
-    color: red;
+h1,h2,h3 {
+   font-weight:800;
+   font-family:'Open Sans',arial,sans-serif;
 }
 
-label {
-  display: block;
-  font-size: 20px;
+.col-sm-9.full {
+    width: 100%;
 }
 
-label + label {
-    margin-top: 20px;
+.page-header {
+  margin-top: 55px;
+  padding-top: 9px;
+  border-top:1px solid #eeeeee;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:2px;
 }
 
-input[type=text] {
-    width: 500px;
-    font-size: 20px;
-    padding: 2px;
-    font-family: monospace;
+.label-default {
+  background-color:#dddddd;
 }
 
-textarea {
-  width: 500px;
-  height: 400px;
-  font-size: 17px;
-  font-family: monospace;
-}
-
-input[type=submit] {
-  font-size: 24px;
-}
-
-.main-title {
-    display: block;
-    color: #222;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-    text-decoration: none;
-}
-
-.post + .post {
-    margin-top: 15px;
-}
-
-.post-heading {
-    position: relative;
-    border-bottom: 3px solid #666;
-}
-
-.post-title {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.post-date {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    color: #999;
-
-}
-
-.post-content {
-    margin-top: 5px;
+small.text-muted {
+  font-family:courier,courier-new,monospace;
 }
