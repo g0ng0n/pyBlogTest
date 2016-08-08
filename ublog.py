@@ -14,7 +14,7 @@ from google.appengine.ext import db
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), autoescape=True)
 
-secret = 'cf93114d1e000d49e74d6ca87a42a1a8'  # pedito hasheado
+secret = 'cf93114d1e000d49e74d6ca87a42a1a8'
 
 
 # FILE LEVEL FUNCTIONS
@@ -319,7 +319,7 @@ class NewComment(BlogHandler):
 
         self.redirect('/posts/%s' % str(post_id))
 
-# Handle comment edit
+# Handle comment edition
 class EditComment(BlogHandler):
     def get(self):
         if self.user:
@@ -452,6 +452,7 @@ class Dislike(BlogHandler):
         else:
             self.redirect("/login")
 
+#this handle the Signup feature
 class Signup(BlogHandler):
     def get(self):
         self.render("signup-form.html")
@@ -485,6 +486,7 @@ class Signup(BlogHandler):
     def done(self, *a, **kw):
         raise NotImplementedError
 
+#this handle the second part of the registration
 class Register(Signup):
     def done(self):
         # make sure the user doesn't already exist
@@ -499,6 +501,7 @@ class Register(Signup):
             self.login(u)
             self.redirect('/')
 
+#this handle the Login feature
 class Login(BlogHandler):
     def get(self):
         self.render('login-form.html')
@@ -514,6 +517,7 @@ class Login(BlogHandler):
             msg = 'Invalid login'
             self.render('login-form.html', error=msg)
 
+#this handle the Logout feature
 class Logout(BlogHandler):
     def get(self):
         self.logout()
@@ -523,7 +527,7 @@ class Logout(BlogHandler):
 ## End Controllers
 
 
-## ROUTER
+## ROUTER, this handle the application routes
 app = webapp2.WSGIApplication([
     ('/?', BlogFront),
     ('/posts/([0-9]+)/delete', DeletePost),
