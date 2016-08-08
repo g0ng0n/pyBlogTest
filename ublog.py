@@ -17,7 +17,7 @@ jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), aut
 secret = 'cf93114d1e000d49e74d6ca87a42a1a8'  # pedito hasheado
 
 
-## UTIL METHODS
+# FILE LEVEL FUNCTIONS
 def render_str(template, **params):
     t = jinja_env.get_template(template)
     return t.render(params)
@@ -78,6 +78,8 @@ def valid_pw(name, password, h):
 def users_key(group = 'default'):
     return db.Key.from_path('users', group)
 
+
+# CLASS DEFINITIONS
 ## MAIN HANDLER
 class BlogHandler(webapp2.RequestHandler):
     def write(self, *a, **kw):
